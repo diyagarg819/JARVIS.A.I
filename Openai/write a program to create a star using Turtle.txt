@@ -1,0 +1,40 @@
+Cohere response for prompt: Jarvis using artificial intelligence write a program to create a star using Turtle 
+ ********************************
+
+ Certainly! Below is a Python program that uses the `turtle` module to draw a star. The program utilizes a simple algorithm to create a five-pointed star. You can run this code in any Python environment that supports the `turtle` graphics library.
+
+```python
+import turtle
+
+# Set up the screen
+screen = turtle.Screen()
+screen.bgcolor("black")
+
+# Create a turtle object
+star = turtle.Turtle()
+star.speed(0)  # Set the fastest speed
+star.color("gold")
+star.width(2)
+
+# Function to draw a star
+def draw_star(size):
+    for _ in range(5):
+        star.forward(size)
+        star.right(144)  # 144 degrees for a five-pointed star
+
+# Draw the star
+draw_star(100)
+
+# Hide the turtle and display the result
+star.hideturtle()
+turtle.done()
+```
+
+### Explanation:
+1. **Screen Setup**: The screen is set to a black background to make the gold star stand out.
+2. **Turtle Object**: A turtle object named `star` is created. The speed is set to the fastest (`speed(0)`), and the color is set to gold with a line width of 2.
+3. **Draw Star Function**: The `draw_star` function takes a `size` parameter, which determines the length of each point of the star. The loop runs 5 times, drawing each point of the star and turning 144 degrees after each line (since 360/5 = 72, but for a star, you turn 180 - 72 = 108, and then add 36 to get 144).
+4. **Drawing the Star**: The `draw_star` function is called with a size of 100.
+5. **Finalize**: The turtle is hidden, and `turtle.done()` keeps the window open until it is closed manually.
+
+You can adjust the `size` parameter in the `draw_star` function to make the star larger or smaller. Enjoy your star! ✨

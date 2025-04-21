@@ -1,0 +1,104 @@
+Cohere response for prompt: Jarvis using artificial intelligence write a Python program to 
+ ********************************
+
+ Certainly! Below is a Python program that simulates a basic Jarvis-like assistant using artificial intelligence. This program uses the `speech_recognition` library to listen to voice commands and the `pyttsx3` library to speak responses. It also includes a simple command-handling system.
+
+First, make sure you have the required libraries installed:
+
+```bash
+pip install speechrecognition pyttsx3
+```
+
+Here’s the Python code for a basic Jarvis assistant:
+
+```python
+import speech_recognition as sr
+import pyttsx3
+import datetime
+import webbrowser
+import os
+
+# Initialize the recognizer and the text-to-speech engine
+recognizer = sr.Recognizer()
+engine = pyttsx3.init()
+
+# Function to speak text
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+
+# Function to listen to commands
+def listen():
+    with sr.Microphone() as source:
+        print("Listening...")
+        recognizer.adjust_for_ambient_noise(source)
+        audio = recognizer.listen(source)
+        try:
+            print("Recognizing...")
+            command = recognizer.recognize_google(audio).lower()
+            print(f"You said: {command}")
+            return command
+        except sr.UnknownValueError:
+            speak("Sorry, I did not understand that.")
+            return None
+        except sr.RequestError:
+            speak("Sorry, my speech service is down.")
+            return None
+
+# Function to greet the user
+def greet():
+    hour = datetime.datetime.now().hour
+    if 0 <= hour < 12:
+        speak("Good morning!")
+    elif 12 <= hour < 18:
+        speak("Good afternoon!")
+    else:
+        speak("Good evening!")
+    speak("I am Jarvis, your assistant. How can I help you today?")
+
+# Function to handle commands
+def handle_command(command):
+    if 'time' in command:
+        current_time = datetime.datetime.now().strftime('%I:%M %p')
+        speak(f"The current time is {current_time}")
+    elif 'open youtube' in command:
+        speak("Opening YouTube")
+        webbrowser.open("https://www.youtube.com")
+    elif 'open google' in command:
+        speak("Opening Google")
+        webbrowser.open("https://www.google.com")
+    elif 'play music' in command:
+        speak("Playing music")
+        music_dir = "C:\\Your\\Music\\Directory"  # Replace with your music directory
+        songs = os.listdir(music_dir)
+        os.startfile(os.path.join(music_dir, songs[0]))
+    elif 'exit' in command or 'quit' in command:
+        speak("Goodbye!")
+        exit()
+    else:
+        speak("I'm not sure how to handle that command.")
+
+# Main function to run Jarvis
+def main():
+    greet()
+    while True:
+        command = listen()
+        if command:
+            handle_command(command)
+
+# Run the Jarvis assistant
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **Speech Recognition**: The `speech_recognition` library is used to capture and recognize speech from the microphone.
+2. **Text-to-Speech**: The `pyttsx3` library is used to convert text to speech.
+3. **Command Handling**: The `handle_command` function processes the recognized command and performs actions like telling the time, opening websites, or playing music.
+4. **Greeting**: The `greet` function provides a personalized greeting based on the time of day.
+
+### Customization:
+- **Music Directory**: Replace `"C:\\Your\\Music\\Directory"` with the actual path to your music folder.
+- **Additional Commands**: You can extend the `handle_command` function to include more commands and functionalities.
+
+This is a basic implementation. For a more advanced Jarvis, you could integrate APIs for weather, news, or even control smart home devices.

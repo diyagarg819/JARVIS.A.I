@@ -1,0 +1,4 @@
+User: hello Jarvis how are
+Jarvis: Hello! I'm doing well, thank you for asking. How can I assist you today?
+User: Jarvis what is your favourite colour
+Jarvis: As an AI, I don't have personal preferences or emotions, so I don't have a favorite color. However, I can help you explore the significance of colors, provide information about color theory, or assist with any color-related queries you might have. Is there a specific aspect of colors you're interested in?
